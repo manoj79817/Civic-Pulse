@@ -1,0 +1,403 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-cockpit: #0b0e14;
+    --panel-gunmetal: #1c212b;
+    --panel-darker: #141820;
+    --accent-cyan: #00d9ff;
+    --accent-violet: #a855f7;
+    --led-red: #ff4757;
+    --led-amber: #ffa502;
+    --led-yellow: #ffd93d;
+    --led-green: #2ed573;
+  }
+
+  body {
+    background-color: var(--bg-cockpit);
+    background-image: 
+      radial-gradient(ellipse at 15% 10%, rgba(0, 217, 255, 0.06) 0%, transparent 45%),
+      radial-gradient(ellipse at 85% 90%, rgba(168, 85, 247, 0.05) 0%, transparent 45%),
+      repeating-linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0.01) 0px,
+        rgba(255, 255, 255, 0.01) 1px,
+        transparent 1px,
+        transparent 6px
+      );
+    background-attachment: fixed;
+    color: #e2e8f0;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+}
+
+/* ==========================================================================
+   TACTILE CONTROL-PANEL SKEUOMORPHISM DESIGN SYSTEM
+   ========================================================================== */
+
+/* Raised Gunmetal Panel with Dual-Tone Lighting (Light top-left, Shadow bottom-right) */
+.console-panel {
+  background: 
+    linear-gradient(135deg, rgba(255, 255, 255, 0.02) 0%, transparent 100%),
+    linear-gradient(145deg, #222834, #181d26);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  border-left: 1px solid rgba(255, 255, 255, 0.12);
+  border-right: 1px solid rgba(0, 0, 0, 0.85);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.98);
+  box-shadow: 
+    0 14px 34px -4px rgba(0, 0, 0, 0.85),
+    0 6px 14px rgba(0, 0, 0, 0.65),
+    inset 1px 1px 1px rgba(255, 255, 255, 0.1);
+}
+
+.console-panel-interactive {
+  transition: transform 0.18s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.18s ease;
+}
+
+.console-panel-interactive:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 18px 40px -4px rgba(0, 0, 0, 0.9),
+    0 8px 16px rgba(0, 0, 0, 0.7),
+    0 0 16px rgba(0, 217, 255, 0.15),
+    inset 1px 1px 1px rgba(255, 255, 255, 0.15);
+}
+
+/* Secondary raised card */
+.tactile-card {
+  background: linear-gradient(145deg, #1f2530, #151a22);
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+  border-right: 1px solid rgba(0, 0, 0, 0.7);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.85);
+  box-shadow: 
+    0 4px 10px rgba(0, 0, 0, 0.55),
+    inset 1px 1px 0px rgba(255, 255, 255, 0.06);
+}
+
+/* Recessed Glass Screen Frame with Metal Bezel */
+.recessed-display {
+  background: #080b10;
+  border-top: 1.5px solid rgba(0, 0, 0, 0.95);
+  border-left: 1.5px solid rgba(0, 0, 0, 0.85);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: 
+    inset 3px 3px 8px rgba(0, 0, 0, 0.95),
+    inset -1px -1px 3px rgba(255, 255, 255, 0.05);
+}
+
+/* Embossed Pressable Buttons */
+.tactile-button {
+  background: linear-gradient(145deg, #252d3a, #171c25);
+  border-top: 1px solid rgba(255, 255, 255, 0.22);
+  border-left: 1px solid rgba(255, 255, 255, 0.12);
+  border-right: 1px solid rgba(0, 0, 0, 0.75);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.95);
+  box-shadow: 
+    0 4px 8px rgba(0, 0, 0, 0.65),
+    inset 1px 1px 1px rgba(255, 255, 255, 0.12);
+  transition: all 0.12s cubic-bezier(0.34, 1.56, 0.64, 1);
+  user-select: none;
+}
+
+.tactile-button:hover {
+  background: linear-gradient(145deg, #2b3544, #1b212b);
+  box-shadow: 
+    0 6px 14px rgba(0, 0, 0, 0.75),
+    0 0 10px rgba(0, 217, 255, 0.18),
+    inset 1px 1px 1px rgba(255, 255, 255, 0.18);
+}
+
+.tactile-button:active,
+.tactile-button-active {
+  transform: translateY(2px) scale(0.97);
+  background: linear-gradient(145deg, #11151c, #1a202a);
+  border-top: 1.5px solid rgba(0, 0, 0, 0.95);
+  border-left: 1.5px solid rgba(0, 0, 0, 0.85);
+  border-right: 1px solid rgba(255, 255, 255, 0.12);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 
+    inset 3px 3px 6px rgba(0, 0, 0, 0.95),
+    inset -1px -1px 2px rgba(255, 255, 255, 0.06);
+}
+
+/* Embossed Hex/Circular Button with Physical Chamfer */
+.tactile-hex-button {
+  background: linear-gradient(145deg, #252d39, #161b24);
+  border-top: 1.5px solid rgba(255, 255, 255, 0.24);
+  border-left: 1.5px solid rgba(255, 255, 255, 0.14);
+  border-right: 1.5px solid rgba(0, 0, 0, 0.85);
+  border-bottom: 2.5px solid rgba(0, 0, 0, 0.98);
+  box-shadow: 
+    0 6px 14px rgba(0, 0, 0, 0.75),
+    inset 1px 1px 2px rgba(255, 255, 255, 0.15);
+  transition: all 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
+  user-select: none;
+}
+
+.tactile-hex-button:hover {
+  background: linear-gradient(145deg, #2d3746, #1a212c);
+  transform: translateY(-1px);
+  box-shadow: 
+    0 8px 18px rgba(0, 0, 0, 0.8),
+    0 0 12px rgba(0, 217, 255, 0.2),
+    inset 1px 1px 2px rgba(255, 255, 255, 0.2);
+}
+
+.tactile-hex-button:active,
+.tactile-hex-button-active {
+  transform: translateY(2.5px) scale(0.96);
+  background: linear-gradient(145deg, #10141a, #161c24);
+  border-top: 2px solid rgba(0, 0, 0, 0.95);
+  border-left: 2px solid rgba(0, 0, 0, 0.9);
+  border-right: 1px solid rgba(255, 255, 255, 0.12);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 
+    inset 3px 3px 8px rgba(0, 0, 0, 0.95),
+    0 0 16px rgba(0, 217, 255, 0.35);
+}
+
+/* Primary Cyan Tactile Cockpit Button */
+.console-button-primary {
+  background: linear-gradient(145deg, #00e5ff, #00b4d8);
+  border-top: 1.5px solid rgba(255, 255, 255, 0.7);
+  border-left: 1.5px solid rgba(255, 255, 255, 0.5);
+  border-right: 1.5px solid rgba(0, 119, 182, 0.95);
+  border-bottom: 3px solid rgba(0, 65, 100, 0.98);
+  box-shadow: 
+    0 5px 15px rgba(0, 217, 255, 0.45),
+    inset 1px 1px 2px rgba(255, 255, 255, 0.6);
+  color: #061019;
+  font-weight: 800;
+  transition: all 0.12s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.console-button-primary:hover {
+  background: linear-gradient(145deg, #33ebff, #00c2e8);
+  box-shadow: 
+    0 8px 22px rgba(0, 217, 255, 0.65),
+    inset 1px 1px 2px rgba(255, 255, 255, 0.75);
+}
+
+.console-button-primary:active {
+  transform: translateY(2px) scale(0.97);
+  background: linear-gradient(145deg, #008fae, #006e8c);
+  border-top: 2px solid rgba(0, 50, 70, 0.95);
+  box-shadow: inset 3px 3px 6px rgba(0, 35, 50, 0.85);
+}
+
+/* Secondary Gunmetal Action Button */
+.console-button-secondary {
+  background: linear-gradient(145deg, #252d3a, #1a202a);
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  border-right: 1px solid rgba(0, 0, 0, 0.7);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.9);
+  box-shadow: 
+    0 4px 8px rgba(0, 0, 0, 0.5),
+    inset 1px 1px 1px rgba(255, 255, 255, 0.1);
+  color: #f1f5f9;
+}
+
+/* 3D Physical Mechanical Toggle Switch */
+.toggle-switch-track {
+  width: 54px;
+  height: 28px;
+  border-radius: 9999px;
+  background: #080b10;
+  border-top: 1.5px solid rgba(0, 0, 0, 0.98);
+  border-left: 1.5px solid rgba(0, 0, 0, 0.85);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: inset 3px 3px 6px rgba(0, 0, 0, 0.98);
+  position: relative;
+  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.toggle-switch-knob {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: 3px;
+  background: linear-gradient(145deg, #353f4e, #1d232c);
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  border-left: 1px solid rgba(255, 255, 255, 0.25);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.95);
+  box-shadow: 
+    0 2px 6px rgba(0, 0, 0, 0.85),
+    inset 1px 1px 1px rgba(255, 255, 255, 0.25);
+  transition: all 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.toggle-switch-knob-active {
+  left: 28px;
+  background: linear-gradient(145deg, #00e5ff, #0099b8);
+  border-top: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 
+    0 0 14px rgba(0, 217, 255, 0.85),
+    0 2px 6px rgba(0, 0, 0, 0.85),
+    inset 1px 1px 2px rgba(255, 255, 255, 0.7);
+}
+
+/* Backlit Status Indicator Light Bulbs (LED style with bloom) */
+.led-red {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ff4757;
+  box-shadow: 0 0 8px #ff4757, 0 0 18px rgba(255, 71, 87, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  display: inline-block;
+}
+
+.led-red-pulse {
+  animation: ledPulse 1.4s infinite cubic-bezier(0.4, 0, 0.6, 1);
+}
+
+@keyframes ledPulse {
+  0%, 100% {
+    opacity: 1;
+    box-shadow: 0 0 8px #ff4757, 0 0 20px rgba(255, 71, 87, 0.9);
+  }
+  50% {
+    opacity: 0.35;
+    box-shadow: 0 0 3px #ff4757;
+  }
+}
+
+.led-amber {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ffa502;
+  box-shadow: 0 0 8px #ffa502, 0 0 18px rgba(255, 165, 2, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  display: inline-block;
+}
+
+.led-yellow {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ffd93d;
+  box-shadow: 0 0 8px #ffd93d, 0 0 18px rgba(255, 217, 61, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  display: inline-block;
+}
+
+.led-green {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #2ed573;
+  box-shadow: 0 0 8px #2ed573, 0 0 18px rgba(46, 213, 115, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  display: inline-block;
+}
+
+.led-cyan {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #00d9ff;
+  box-shadow: 0 0 8px #00d9ff, 0 0 18px rgba(0, 217, 255, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  display: inline-block;
+}
+
+/* Corner screw heads on console chassis panels */
+.hex-screw {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #374151, #0f151e);
+  box-shadow: 
+    inset 1px 1px 1px rgba(255, 255, 255, 0.25),
+    0 1px 2px rgba(0, 0, 0, 0.9);
+  position: relative;
+}
+.hex-screw::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 20%;
+  right: 20%;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.9);
+  transform: translateY(-50%) rotate(45deg);
+}
+
+/* Physical Rotary Knob Widget */
+.rotary-knob-casing {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #2b3341, #151a23);
+  border-top: 1.5px solid rgba(255, 255, 255, 0.25);
+  border-left: 1px solid rgba(255, 255, 255, 0.12);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.95);
+  box-shadow: 
+    0 4px 10px rgba(0, 0, 0, 0.75),
+    inset 1px 1px 2px rgba(255, 255, 255, 0.15);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  user-select: none;
+}
+
+.rotary-knob-pointer {
+  position: absolute;
+  top: 4px;
+  width: 3px;
+  height: 10px;
+  border-radius: 2px;
+  background: #00d9ff;
+  box-shadow: 0 0 6px #00d9ff;
+}
+
+/* Physical Analog Workload Gauge */
+.analog-gauge-track {
+  height: 12px;
+  background: #080b10;
+  border-top: 1px solid rgba(0, 0, 0, 0.95);
+  border-left: 1px solid rgba(0, 0, 0, 0.9);
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.95);
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+}
+
+.analog-gauge-needle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: #ffffff;
+  box-shadow: 0 0 6px #ffffff, 0 0 12px #00d9ff;
+  border-radius: 1px;
+  transition: left 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Leaflet dark custom popup */
+.leaflet-popup-content-wrapper {
+  background: #111620 !important;
+  color: #f1f5f9 !important;
+  border-radius: 14px !important;
+  border-top: 1.5px solid rgba(255, 255, 255, 0.2) !important;
+  border-left: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-right: 1px solid rgba(0, 0, 0, 0.85) !important;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.98) !important;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.85) !important;
+}
+
+.leaflet-popup-tip {
+  background: #111620 !important;
+}

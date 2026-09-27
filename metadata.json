@@ -1,0 +1,10 @@
+{
+  "name": "Remix CivicPulse - Smart Neighborhood Issue Reporter",
+  "description": "Report neighborhood issues in seconds without an account. Real-time smart city operations dashboard with live interactive map, deterministic priority engine, duplicate detection, and public status tracking.",
+  "requestFramePermissions": [
+    "geolocation"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
